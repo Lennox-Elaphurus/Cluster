@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-
+import pylint
 
 xy=open("xy.coordinates",'r')
 pointsdic={}
@@ -14,7 +14,7 @@ for i in range(0,len(pointslist)):
         x=pointslist[i]
     else:   # y
         pointsdic[temp]=(float(x),float(pointslist[i])
-print(pointsdic)        
+print(pointsdic)      
 
 
 close(xy)
