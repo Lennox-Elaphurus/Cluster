@@ -15,4 +15,20 @@ for i in range(0, len(pointslist)):
     else:   # y
         pointsdic[temp] = (float(x), float(pointslist[i]))
 print(pointsdic)
+# input finished
+class vertex {
+    char name[100];
+    double x, y;
+    vector<vertex*> neighbors;
+    int weight;
+    bool arrived;
+
+    vertex (char *name_, double x_, double y_) {
+        strcpy(name, name_);
+        x = x_; y = y_;
+    }
+};
+
+define Distance (vertex a, vertex b) {
+    return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))
 xy.close()
