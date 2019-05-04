@@ -25,16 +25,20 @@ class vertex :
         self.arrive=0
         self.neighbors=[]
 
+global total
 total = 1000
 V=[]
 ANS={}
+global maxdis
 maxdis=0
+global lowerlimit
 lowerlimit=0
 
 def Distance (a, b):
     return ((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y))**(0.5)
 
 def Read ():
+    global maxdis
     for key,value in pointsdic.items():
         V.append(vertex(key, value[0], value[1]))
     for p1 in V:
@@ -61,6 +65,7 @@ def AddEdges(radius):
 
 def CountWeights():
     sum=0
+    global lowerlimit
     for p in V:
         sum =sum + p.weight
     average = sum / len(V)
@@ -68,7 +73,7 @@ def CountWeights():
     for p in V:
         variance = variance+(p.weight - average) * (p.weight - average) / len(V)
     lowerlimit = average - (variance)**(0.5)
-    return lowerlimit
+
 def DFS(p1,output):
     if output is True:
         print(p1.name)
@@ -91,9 +96,23 @@ def Cluster(radius,output):
             if output is True:
                 print("")
     if 2 <= categories  and categories <= len(V) / 3:
-        if ANS.find(categories) == ANS.end():# debug
+        if categories in ANS.keys():
             ANS[categories] = radius
 
+# main
+Read()
+for i in range(1,total+1):
+    Cluster(maxdis / 2 / total * i, False)
+print("Here are ",len(ANS)," ways to cluster.")
+print("NO.   cluster radius")
+num=0
+for key,value in ANS.items():
+    num=num+1
+    print('%-8d' % num,'%-6d' % key,'%f' % value)
+num=input("Please enter the number of method(NO.) you want:")
+print("\nThe method you want is as follow:")
+for value in ANS.values():
+    Cluster(value,True)
 
 
 xy.close()
