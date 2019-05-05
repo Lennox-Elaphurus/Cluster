@@ -81,11 +81,13 @@ def CountWeights():
     lowerlimit = average - (variance)**(0.5)
 
 def DFS(p1,output):
+    global lowerlimit
     if output is True:
         print(p1.name)
     p1.arrived=True
+    # print(p1.name,".arrived=True")
     for p2 in p1.neighbors:
-        if (not p2.arrived) and p1.weight + p2.weight > 2 * lowerlimit is True:
+        if (not p2.arrived) and p1.weight + p2.weight > 2 * lowerlimit:
             DFS(p2,output)
 
 import random as ra
@@ -114,8 +116,8 @@ def Cluster(radius,output):
                 print("")
     # print("categories: ",categories)
     # print("len(V) / 3:",len(V) / 3)
-    # if categories >= 2 and categories <= len(V) / 3:
-    if categories >= 2 :
+    if categories >= 2 and categories <= len(V) / 3:
+    # if categories >= 2 :
         if not (categories in ANS):
             ANS[categories] = radius
             print("categories:",categories,"radius:",radius)
@@ -125,7 +127,7 @@ Read()
 for i in range(1,total+1):
     Cluster(maxdis / 2 / total * i, False)
 print("There are ",len(ANS)," methods to cluster.")
-print("NO.   cluster radius")
+print("NO.\tcluster\tradius")
 num=0
 for key,value in ANS.items():
     num=num+1
