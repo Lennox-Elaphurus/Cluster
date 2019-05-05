@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-xy = open("xy.coordinates", 'r')
+xy = open("input.txt", 'r')
 pointsdic = {}
 # separate data into items
 pointslist = xy.read()
@@ -14,7 +14,7 @@ for i in range(0, len(pointslist)):
         x = pointslist[i]
     else:   # y
         pointsdic[temp] = (float(x), float(pointslist[i]))
-print(pointsdic)
+# print(pointsdic)
 # input finished
 class vertex :
     def __init__(self,name,x,y):
@@ -49,7 +49,7 @@ def Read ():
             tempdis = Distance(p1,p2)
             if tempdis > maxdis:
                 maxdis=tempdis
-    print("Import ",len(V)," points from xy.coordinates.")
+    print("Import ",len(V)," points from input.txt.")
 
 def Init():
     global V
@@ -108,14 +108,14 @@ def Cluster(radius,output):
         if p.arrived is False:
             categories = categories+1
             if output is True:
-                print("Class ",categories," :",ending="")
+                print("Class",categories,":",end="")
             DFS(p,output)
             if output is True:
                 print("")
     # print("categories: ",categories)
     # print("len(V) / 3:",len(V) / 3)
-    if categories >= 2 and categories <= len(V) / 3:
-        print("OK")
+    # if categories >= 2 and categories <= len(V) / 3:
+    if categories >= 2 :
         if not (categories in ANS):
             ANS[categories] = radius
             print("categories:",categories,"radius:",radius)
