@@ -80,10 +80,23 @@ def CountWeights():
         variance = variance+(p.weight - average) * (p.weight - average) / len(V)
     lowerlimit = average - (variance)**(0.5)
 
+global cntColor
+cntColor=-1
+def getcolor():
+    global cntColor
+    cntColor = cntColor +1
+
+color=['r','g','b','y','m','c','w','k']
+# def getMarker():
+    # return marker
+
 def DFS(p1,output):
     global lowerlimit
+    global cntColor
+    # marker=getMarker()
     if output is True:
         print(p1.name,end=" ")
+        plt.scatter(float(p1.x), float(p1.y), c=color[cntColor], s=50, alpha=0.5, marker='o', label=p1.name)      # draw as scatter
     p1.arrived=True
     # print(p1.name,".arrived=True")
     for p2 in p1.neighbors:
@@ -111,6 +124,7 @@ def Cluster(radius,output):
             categories = categories+1
             if output is True:
                 print("Class",categories,":",end="")
+                getcolor()
             DFS(p,output)
             if output is True:
                 print("")
@@ -141,6 +155,8 @@ for key in ANS.keys():
     # print("key:",key,"ANS[key]:",ANS[key])
     if key == int(num):
         Cluster(ANS[key],True)
+# clustering finished
 
 
+plt.show()
 xy.close()
