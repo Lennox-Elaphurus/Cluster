@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-xy = open("xy.coordinates", 'r')
+xy = open("test.txt", 'r')
 pointsdic = {}
 # separate data into items
 pointslist = xy.read()
