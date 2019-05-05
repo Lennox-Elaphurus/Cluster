@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-xy = open("input.txt", 'r')
+xy = open("xy.coordinates", 'r')
 pointsdic = {}
 # separate data into items
 pointslist = xy.read()
@@ -49,7 +49,7 @@ def Read ():
             tempdis = Distance(p1,p2)
             if tempdis > maxdis:
                 maxdis=tempdis
-    print("Import ",len(V)," points from input.txt.")
+    print("Import ",len(V)," points from xy.coordinates.")
 
 def Init():
     global V
@@ -83,7 +83,7 @@ def CountWeights():
 def DFS(p1,output):
     global lowerlimit
     if output is True:
-        print(p1.name)
+        print(p1.name,end=" ")
     p1.arrived=True
     # print(p1.name,".arrived=True")
     for p2 in p1.neighbors:
@@ -127,15 +127,20 @@ Read()
 for i in range(1,total+1):
     Cluster(maxdis / 2 / total * i, False)
 print("There are ",len(ANS)," methods to cluster.")
-print("NO.\tcluster\tradius")
+print("cluster\tradius")
 num=0
 for key,value in ANS.items():
     num=num+1
-    print('%-8d' % num,'%-6d' % key,'%f' % value)
-num=input("Please enter the number of method(NO.) you want:")
+    print('%-6d' % key,'%f' % value)
+num=input("Please enter the number of cluster you want:")
 print("\nThe method you want is as follow:")
-for value in ANS.values():
-    Cluster(value,True)
+# for value in ANS.values():
+#     Cluster(value,True)
+#     print("value:",value)
+for key in ANS.keys():
+    # print("key:",key,"ANS[key]:",ANS[key])
+    if key == int(num):
+        Cluster(ANS[key],True)
 
 
 xy.close()
