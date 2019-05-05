@@ -86,7 +86,7 @@ def getcolor():
     global cntColor
     cntColor = cntColor +1
 
-color=['r','g','b','y','m','c','w','k']
+color=['r','g','b','y','m','c','w','k'] #   only support the cluster <=8
 # def getMarker():
     # return marker
 
@@ -96,7 +96,8 @@ def DFS(p1,output):
     # marker=getMarker()
     if output is True:
         print(p1.name,end=" ")
-        plt.scatter(float(p1.x), float(p1.y), c=color[cntColor], s=50, alpha=0.5, marker='o', label=p1.name)      # draw as scatter
+        plt.scatter(float(p1.x), float(p1.y), c=color[cntColor], s=75, alpha=0.5, marker='o', label=p1.name)      # draw as scatter
+        plt.annotate(p1.name, (float(p1.x), float(p1.y)))  # adding labels
     p1.arrived=True
     # print(p1.name,".arrived=True")
     for p2 in p1.neighbors:
