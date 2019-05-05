@@ -115,5 +115,6 @@ int main (void) {
     map<int, double>::iterator it = ANS.begin();
     while (--num) it++;
     Cluster(it->second, true);
+    scanf("%d", &num);
     return 0;
 }
