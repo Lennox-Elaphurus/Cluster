@@ -147,14 +147,34 @@ num=0
 for key,value in ANS.items():
     num=num+1
     print('%-6d' % key,'%f' % value)
-num=input("Please enter the number of cluster you want:")
-print("\nThe method you want is as follow:")
-# for value in ANS.values():
-#     Cluster(value,True)
-#     print("value:",value)
+
+# find the best method
+# find the biggest difference between radius
+
+clusterlist=[]
+
+for key in ANS.keys():
+    clusterlist.append(int(key))
+clusterlist.sort()
+maxDifference=0
+maxId=0 # the former key that make max difference
+lastKey=0
+for key in reversed(clusterlist):
+    print("key:",key)
+    if lastKey!= 0:
+        temp = abs(ANS[key]-ANS[lastKey])
+        print("difference between ",lastKey," and ",key," is ",temp)
+        if float(temp) > float(maxDifference):
+            maxDifference=temp
+            maxId=key
+    lastKey=key
+    print("maxId",maxId)
+# the maxId is the best method
+print("\nThe best method is as follow:")
+
 for key in ANS.keys():
     # print("key:",key,"ANS[key]:",ANS[key])
-    if key == int(num):
+    if key == int(maxId):
         Cluster(ANS[key],True)
 # clustering finished
 
