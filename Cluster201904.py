@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-xy = open("xy.coordinates", 'r')
+xy = open("test.txt", 'r')
 pointsdic = {}
 # separate data into items
 pointslist = xy.read()
@@ -49,7 +49,7 @@ def Read ():
             tempdis = Distance(p1,p2)
             if tempdis > maxdis:
                 maxdis=tempdis
-    print("Import ",len(V)," points from xy.coordinates.")
+    print("Import ",len(V)," points from test.txt.")
 
 def Init():
     global V
@@ -166,7 +166,7 @@ for key in clusterlist:
         # print("difference between ",lastKey," and ",key," is ",temp)
         if float(temp) > float(maxDifference):
             maxDifference=temp
-            maxId=lastKey
+            maxId=key
             if temp > ANS[lastKey]:
                 break
     lastKey=key
