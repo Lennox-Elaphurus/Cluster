@@ -159,16 +159,18 @@ clusterlist.sort()
 maxDifference=0
 maxId=0 # the former key that make max difference
 lastKey=0
-for key in reversed(clusterlist):
-    print("key:",key)
+for key in clusterlist:
+    # print("key:",key)
     if lastKey!= 0:
         temp = abs(ANS[key]-ANS[lastKey])
-        print("difference between ",lastKey," and ",key," is ",temp)
+        # print("difference between ",lastKey," and ",key," is ",temp)
         if float(temp) > float(maxDifference):
             maxDifference=temp
-            maxId=key
+            maxId=lastKey
+            if temp > ANS[lastKey]:
+                break
     lastKey=key
-    print("maxId",maxId)
+    # print("maxId",maxId)
 # the maxId is the best method
 print("\nThe best method is as follow:")
 
