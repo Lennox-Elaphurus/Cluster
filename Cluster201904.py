@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-xy = open("test.txt", 'r')
+xy = open("xy.coordinates", 'r')
 pointsdic = {}
 # separate data into items
 pointslist = xy.read()
@@ -85,15 +85,14 @@ cntColor=-1
 def getcolor():
     global cntColor
     cntColor = cntColor +1
+    if cntColor >7:
+        cntColor=0
 
 color=['r','g','b','y','m','c','w','k'] #   only support the cluster <=8
-# def getMarker():
-    # return marker
 
 def DFS(p1,output):
     global lowerlimit
     global cntColor
-    # marker=getMarker()
     if output is True:
         print(p1.name,end=" ")
         plt.scatter(float(p1.x), float(p1.y), c=color[cntColor], s=75, alpha=0.5, marker='o', label=p1.name)      # draw as scatter
@@ -129,18 +128,24 @@ def Cluster(radius,output):
             DFS(p,output)
             if output is True:
                 print("")
-    # print("categories: ",categories)
-    # print("len(V) / 3:",len(V) / 3)
     if categories >= 2 and categories <= len(V) / 3:
-    # if categories >= 2 :
         if not (categories in ANS):
             ANS[categories] = radius
             print("categories:",categories,"radius:",radius)
 
+# def drawNewScatter(i):
+#     global cntColor
+#     cntColor=-1
+#     Cluster(ANS[key],True)
 # main
 Read()
 for i in range(1,total+1):
-    Cluster(maxdis / 2 / total * i, False)
+    cntColor=-1
+    if i<5:
+        plt.subplot(220+i)
+        Cluster(maxdis / 2 / total * i, True)
+    else:
+        Cluster(maxdis / 2 / total * i, False)
 print("There are ",len(ANS)," methods to cluster.")
 print("cluster\tradius")
 num=0
