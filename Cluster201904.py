@@ -141,8 +141,8 @@ def Cluster(radius,output):
 Read()
 for i in range(1,total+1):
     cntColor=-1
-    if i<5:
-        plt.subplot(220+i)
+    if i>=9 and i<13:
+        plt.subplot(220+i-8)
         Cluster(maxdis / 2 / total * i, True)
     else:
         Cluster(maxdis / 2 / total * i, False)
@@ -152,16 +152,12 @@ num=0
 for key,value in ANS.items():
     num=num+1
     print('%-6d' % key,'%f' % value)
-num=input("Please enter the number of cluster you want:")
-print("\nThe method you want is as follow:")
-# for value in ANS.values():
-#     Cluster(value,True)
-#     print("value:",value)
-for key in ANS.keys():
-    # print("key:",key,"ANS[key]:",ANS[key])
-    if key == int(num):
-        Cluster(ANS[key],True)
-# clustering finished
+# num=input("Please enter the number of cluster you want:")
+# print("\nThe method you want is as follow:")
+# for key in ANS.keys():
+#     if key == int(num):
+#         Cluster(ANS[key],True)
+# # clustering finished
 
 
 plt.show()
