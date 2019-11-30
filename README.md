@@ -8,6 +8,7 @@
 ## Principle
 
 Graph theory:
+
 1. connect the points within different radius
 2. count the Connected Components in the graph
 3. find the proper radius by comparing the radius of each clusters
